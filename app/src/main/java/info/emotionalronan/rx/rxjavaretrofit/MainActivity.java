@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.List;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -62,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
         movieService.getTopMovie(0, 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MovieEntity>() {
+                .subscribe(new Observer<HttpResult<List<Subject>>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(MovieEntity movieEntity) {
+                    public void onNext(HttpResult<List<Subject>> movieEntity) {
 
                         resultTxt.setText(movieEntity.toString());
                         Log.e(TAG, "" + movieEntity.toString());

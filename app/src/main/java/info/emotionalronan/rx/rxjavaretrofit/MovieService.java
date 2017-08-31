@@ -1,6 +1,8 @@
 package info.emotionalronan.rx.rxjavaretrofit;
 
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -12,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface MovieService {
     @GET("top250")
-    Observable<MovieEntity> getTopMovie(
+    Observable<HttpResult<List<Subject>>> getTopMovie(
             @Query("start") int start,
             @Query("count") int count
     );
